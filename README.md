@@ -35,7 +35,7 @@ Document_root смотрит на `your_folder/yii2-app-advanced/api/web`
 
 <br>
 
-<div style="border-left: 1px solid gray; padding-left: 15px">
+<div style="border-left: 1px solid black; padding: 10px 5px; padding-left: 15px; border-top: 1px solid black;">
 
 <h4>Запрос <em>POST login</em> </h4>
 
@@ -67,7 +67,8 @@ Content-Type: application/json; charset=UTF-8
 
 </div>
 <br>
-<div style="border-left: 1px solid gray; padding-left: 15px">
+
+<div style="border-left: 1px solid black; padding: 10px 5px; padding-left: 15px; border-top: 1px solid black;">
 
 <h4>Запрос <em>POST regist</em> </h4>
 
@@ -102,7 +103,7 @@ Content-Type: application/json; charset=UTF-8
 
 </div>
 <br>
-<div style="border-left: 1px solid gray; padding-left: 15px">
+<div style="border-left: 1px solid black; padding: 10px 5px; padding-left: 15px; border-top: 1px solid black;">
 
 <h4>Запрос <em>POST auth</em> </h4>
 
