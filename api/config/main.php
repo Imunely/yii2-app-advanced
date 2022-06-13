@@ -26,6 +26,12 @@ return [
     ],
 
     'components' => [
+        'request' => [
+            'csrfParam' => '_csrf-frontend',
+        ],
+        'response' => [
+            'format' => 'json',
+        ],
         'user' => [
             'identityClass' => 'common\models\User',
             'enableAutoLogin' => false,
@@ -41,18 +47,25 @@ return [
         ],
 
         'urlManager' => [
-            'enablePrettyUrl' => true,
-            'enableStrictParsing' => true,
+            'enablePrettyUrl' =>  true,
+            'enableStrictParsing' => false,
             'showScriptName' => false,
             //http://yii-api.loc/api/v1/userl
             'rules' => [
                 [
+                    'pluralize' => true,
                     'class' => \yii\rest\UrlRule::class,
                     'controller' => ['v1/userl'],
-                    //'prefix' => 'api',
+                    'prefix' => 'api',
                     'tokens' => [
                         '{id}' => '<id:\\w+>'
-                    ]
+                    ],
+                    'extraPatterns' => [
+                        'POST auth' => 'auth',
+                        'POST login' => 'login',
+                        'GET messageGet' => 'mesGet',
+                        'POST regist' => 'regist'
+                    ],
                 ]
             ],
         ]

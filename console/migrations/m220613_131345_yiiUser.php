@@ -3,9 +3,9 @@
 use yii\db\Migration;
 
 /**
- * Class m220610_152441_localUsers
+ * Class m220613_131345_yiiUser
  */
-class m220610_152441_localUsers extends Migration
+class m220613_131345_yiiUser extends Migration
 {
     /**
      * {@inheritdoc}
@@ -14,7 +14,6 @@ class m220610_152441_localUsers extends Migration
     {
         $tableOptions = null;
         if ($this->db->driverName === 'mysql') {
-            // http://stackoverflow.com/questions/766809/whats-the-difference-between-utf8-general-ci-and-utf8-unicode-ci
             $tableOptions = 'CHARACTER SET utf8 COLLATE utf8_unicode_ci ENGINE=InnoDB';
         }
 
@@ -23,10 +22,13 @@ class m220610_152441_localUsers extends Migration
             'username' => $this->string()->notNull()->unique(),
             'auth_key' => $this->string(32)->notNull(),
             'password_hash' => $this->string()->notNull(),
-            'password_reset_token' => $this->string()->unique(),
+            'auth_token' => $this->string()->unique(),
             'phone' => $this->string()->notNull()->unique(),
 
             'status' => $this->smallInteger()->notNull()->defaultValue(10),
+
+            'requested_at' => $this->integer()->notNull(),
+            'request_count' => $this->integer()->notNull(),
             'created_at' => $this->integer()->notNull(),
             'updated_at' => $this->integer()->notNull(),
         ], $tableOptions);
@@ -37,7 +39,7 @@ class m220610_152441_localUsers extends Migration
      */
     public function safeDown()
     {
-        echo "m220610_152441_localUsers cannot be reverted.\n";
+        echo "m220613_131345_yiiUser cannot be reverted.\n";
 
         return false;
     }
@@ -51,7 +53,7 @@ class m220610_152441_localUsers extends Migration
 
     public function down()
     {
-        echo "m220610_152441_localUsers cannot be reverted.\n";
+        echo "m220613_131345_yiiUser cannot be reverted.\n";
 
         return false;
     }
