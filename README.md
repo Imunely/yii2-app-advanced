@@ -22,6 +22,8 @@ Document_root смотрит на `your_folder/yii2-app-advanced/api/web`
 
 Выполнение миграции: `php yii migrate yiiUsr`
 
+<br>
+
 Доступны следующие запросы:
 
 `'POST regist' => 'regist'` - запрос для регитрации
@@ -30,19 +32,8 @@ Document_root смотрит на `your_folder/yii2-app-advanced/api/web`
 
 `'POST login' => 'login',` - запрос для авторизации
 
-<h4>Запрос <em>POST regist</em> </h4>
 
-`signup[username]` - имя пользователя
-
-`signup[phone]` - номер телефона
-
-`signup[password]` - пароль
-
-<h4>Запрос <em>POST auth</em> </h4>
-
-`auth[code]` - 4-х значный код
-
-`auth[token]` - tmp токен, полученный ранее
+<br>
 
 <div style="border-left: 1px solid gray; padding-left: 15px">
 
@@ -75,7 +66,7 @@ Content-Type: application/json; charset=UTF-8
 `{"token":"\_xPXDbKZoH9vp1KJILPmoZ3BrEQOz5Q-"}`</em></small>
 
 </div>
-
+<br>
 <div style="border-left: 1px solid gray; padding-left: 15px">
 
 <h4>Запрос <em>POST regist</em> </h4>
@@ -110,7 +101,7 @@ Content-Type: application/json; charset=UTF-8
 </em></small>
 
 </div>
-
+<br>
 <div style="border-left: 1px solid gray; padding-left: 15px">
 
 <h4>Запрос <em>POST auth</em> </h4>
