@@ -6,55 +6,143 @@
     <br>
 </p>
 
-Yii 2 Advanced Project Template is a skeleton [Yii 2](http://www.yiiframework.com/) application best for
-developing complex Web applications with multiple tiers.
+Used: `php 7.4, Apache2, mysql5`
 
-The template includes three tiers: front end, back end, and console, each of which
-is a separate Yii application.
+Как развернуть:
 
-The template is designed to work in a team development environment. It supports
-deploying the application in different environments.
+Используйте `git clone https://github.com/Imunely/yii2-app-advanced.git` чтобы клонировать проект
 
-Documentation is at [docs/guide/README.md](docs/guide/README.md).
+Настройка веб-сервера:
 
-[![Latest Stable Version](https://img.shields.io/packagist/v/yiisoft/yii2-app-advanced.svg)](https://packagist.org/packages/yiisoft/yii2-app-advanced)
-[![Total Downloads](https://img.shields.io/packagist/dt/yiisoft/yii2-app-advanced.svg)](https://packagist.org/packages/yiisoft/yii2-app-advanced)
-[![build](https://github.com/yiisoft/yii2-app-advanced/workflows/build/badge.svg)](https://github.com/yiisoft/yii2-app-advanced/actions?query=workflow%3Abuild)
+Document_root смотрит на `your_folder/yii2-app-advanced/api/web`
 
-DIRECTORY STRUCTURE
--------------------
+В папке `\api\modules` находятся версии api в нумерации `v1, v2, ..., vn`
 
-```
-common
-    config/              contains shared configurations
-    mail/                contains view files for e-mails
-    models/              contains model classes used in both backend and frontend
-    tests/               contains tests for common classes    
-console
-    config/              contains console configurations
-    controllers/         contains console controllers (commands)
-    migrations/          contains database migrations
-    models/              contains console-specific model classes
-    runtime/             contains files generated during runtime
-backend
-    assets/              contains application assets such as JavaScript and CSS
-    config/              contains backend configurations
-    controllers/         contains Web controller classes
-    models/              contains backend-specific model classes
-    runtime/             contains files generated during runtime
-    tests/               contains tests for backend application    
-    views/               contains view files for the Web application
-    web/                 contains the entry script and Web resources
-frontend
-    assets/              contains application assets such as JavaScript and CSS
-    config/              contains frontend configurations
-    controllers/         contains Web controller classes
-    models/              contains frontend-specific model classes
-    runtime/             contains files generated during runtime
-    tests/               contains tests for frontend application
-    views/               contains view files for the Web application
-    web/                 contains the entry script and Web resources
-    widgets/             contains frontend widgets
-vendor/                  contains dependent 3rd-party packages
-environments/            contains environment-based overrides
-```
+Чтобы получить доступ к api сипользуйте url `http://yii.local/api/v1/userls`
+
+Выполнение миграции: `php yii migrate yiiUsr`
+
+Доступны следующие запросы:
+
+`'POST regist' => 'regist'` - запрос для регитрации
+
+`'POST auth' => 'auth',` - запрос для подвтвержения номера
+
+`'POST login' => 'login',` - запрос для авторизации
+
+<h4>Запрос <em>POST regist</em> </h4>
+
+`signup[username]` - имя пользователя
+
+`signup[phone]` - номер телефона
+
+`signup[password]` - пароль
+
+<h4>Запрос <em>POST auth</em> </h4>
+
+`auth[code]` - 4-х значный код
+
+`auth[token]` - tmp токен, полученный ранее
+
+<div style="border-left: 1px solid gray; padding-left: 15px">
+
+<h4>Запрос <em>POST login</em> </h4>
+
+<small> <em>curl -i -X POST -d "login[username]=Admin&login[password]=sfdb34b34" `"http://api.local/api/v1/userls/login"` </small> <em>
+
+<h4>Ответ </h4>
+
+<small> <em> `HTTP/1.1 200 OK`
+
+Date: Mon, 13 Jun 2022 17:22:52 GMT
+
+Server: Apache/2.4.53 (Unix) PHP/7.4.3
+
+X-Powered-By: PHP/7.4.3
+
+Vary: Accept
+
+X-Debug-Tag: 62a7726c9cd79
+
+X-Debug-Duration: 596
+
+X-Debug-Link: /debug/default/view?tag=62a7726c9cd79
+
+Transfer-Encoding: chunked
+
+Content-Type: application/json; charset=UTF-8
+
+`{"token":"\_xPXDbKZoH9vp1KJILPmoZ3BrEQOz5Q-"}`</em></small>
+
+</div>
+
+<div style="border-left: 1px solid gray; padding-left: 15px">
+
+<h4>Запрос <em>POST regist</em> </h4>
+
+<small> <em>curl -i -X POST -d "login[username]=Admin&login[password]=sfdb34b34" `"http://api.local/api/v1/userls/login"` </small> <em>
+
+<h4>Ответ </h4>
+
+<small> <em>
+
+`HTTP/1.1 200 OK`
+
+Date: Mon, 13 Jun 2022 17:35:17 GMT
+
+Server: Apache/2.4.53 (Unix) PHP/7.4.3
+
+X-Powered-By: PHP/7.4.3
+
+Vary: Accept
+
+X-Debug-Tag: 62a77555bc3db
+
+X-Debug-Duration: 573
+
+X-Debug-Link: /debug/default/view?tag=62a77555bc3db
+
+Transfer-Encoding: chunked
+
+Content-Type: application/json; charset=UTF-8
+
+`{"code":7773,"token":"4XnqVRMvW6LUYpkD_iVGW3cLOvOAAIrw"}`
+</em></small>
+
+</div>
+
+<div style="border-left: 1px solid gray; padding-left: 15px">
+
+<h4>Запрос <em>POST auth</em> </h4>
+
+<small> <em>curl -i -X POST -d "auth[token]=4XnqVRMvW6LUYpkD_iVGW3cLOvOAAIrw&auth[code]=7773" `"http://api.local/api/v1/userls/auth"` </small> <em>
+
+<h4>Ответ</h4>
+
+<small> <em>
+
+`HTTP/1.1 200 OK`
+
+Date: Mon, 13 Jun 2022 17:35:17 GMT
+
+Server: Apache/2.4.53 (Unix) PHP/7.4.3
+
+X-Powered-By: PHP/7.4.3
+
+Vary: Accept
+
+X-Debug-Tag: 62a776849e1d4
+
+X-Debug-Duration: 51
+
+X-Debug-Link: /debug/default/view?tag=62a776849e1d4
+
+Transfer-Encoding: chunked
+
+Content-Type: application/json; charset=UTF-8
+
+`{"token":"MxzIQQc3dochrM7JktDqvV0twD93NJVJ"}`
+
+</em></small>
+
+</div>

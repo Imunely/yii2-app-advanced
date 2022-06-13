@@ -38,7 +38,7 @@ class UserlController extends ActiveController
 
         if ($model->load(\Yii::$app->request->post(), 'login') && $auth = $model->login()) {
             $model->password = '';
-            \Yii::$app->response->data = $auth;
+            \Yii::$app->response->data = ['token' => $auth];
         } else {
             throw new \yii\web\UnauthorizedHttpException();
         }
@@ -52,7 +52,7 @@ class UserlController extends ActiveController
         if ($model->load(\Yii::$app->request->post(), 'sign')  && $model->signup()) {
             \Yii::$app->response->data = $model->sendCode();
         } else {
-            \Yii::$app->response->data = ActiveForm::validate($model);
+            //\Yii::$app->response->data = ActiveForm::validate($model); ???
             throw new \yii\web\NotAcceptableHttpException();
         }
     }

@@ -63,7 +63,6 @@ return [
                     'extraPatterns' => [
                         'POST auth' => 'auth',
                         'POST login' => 'login',
-                        'GET messageGet' => 'mesGet',
                         'POST regist' => 'regist'
                     ],
                 ]
