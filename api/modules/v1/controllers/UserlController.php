@@ -4,6 +4,8 @@ namespace api\modules\v1\controllers;
 
 use api\modules\v1\models\Auth;
 use api\modules\v1\models\Login;
+use api\modules\v1\models\Message;
+use api\modules\v1\models\Msg;
 use api\modules\v1\models\Signup;
 use yii\bootstrap4\ActiveForm;
 use yii\rest\ActiveController;
@@ -45,7 +47,7 @@ class UserlController extends ActiveController
     }
 
 
-    public function actionRegist()
+    public function actionRegistration()
     {
         $model = new Signup();
 
@@ -59,7 +61,31 @@ class UserlController extends ActiveController
 
     public function actionMessage()
     {
-        $response = \Yii::$app->response;
-        $response->format = \yii\web\Response::FORMAT_JSON;
+        $model = new Message();
+
+        if ($model->load(\Yii::$app->request->post(), 'msg') && $model->sendMsg()) {
+
+            \Yii::$app->response->data = ['status' => true];
+        } else {
+            //\Yii::$app->response->data = ActiveForm::validate($model); ???
+            throw new \yii\web\NotAcceptableHttpException();
+        }
+    }
+
+    public function actionGetmessageforuser($user_id)
+    {
+        if (is_int($user_id)) {
+            throw new \yii\web\NotAcceptableHttpException();
+        }
+
+        //$model = new Msg();
+
+        // Msg::find()->where(['user_id_from' => $id]);
+
+        \Yii::$app->response->data = ['messages' => Msg::find()
+            ->where(['user_id_from' => $user_id])
+            ->orderBy(['id' => SORT_DESC])
+            ->limit(10)
+            ->all()];
     }
 }

@@ -63,7 +63,9 @@ return [
                     'extraPatterns' => [
                         'POST auth' => 'auth',
                         'POST login' => 'login',
-                        'POST regist' => 'regist'
+                        'POST registration' => 'registration',
+                        'POST message' => 'message',
+                        'GET getmessageforuser' => 'getmessageforuser'
                     ],
                 ]
             ],
