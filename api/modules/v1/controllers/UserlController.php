@@ -78,14 +78,10 @@ class UserlController extends ActiveController
             throw new \yii\web\NotAcceptableHttpException();
         }
 
-        //$model = new Msg();
-
-        // Msg::find()->where(['user_id_from' => $id]);
-
         \Yii::$app->response->data = ['messages' => Msg::find()
             ->where(['user_id_from' => $user_id])
             ->orderBy(['id' => SORT_DESC])
-            ->limit(10)
+            ->limit(30)
             ->all()];
     }
 }
