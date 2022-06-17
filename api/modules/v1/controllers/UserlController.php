@@ -2,6 +2,8 @@
 
 namespace api\modules\v1\controllers;
 
+use OpenApi\Annotations as OA;
+
 use api\modules\v1\models\Auth;
 use api\modules\v1\models\Login;
 use api\modules\v1\models\Message;
@@ -10,6 +12,15 @@ use api\modules\v1\models\Signup;
 use yii\bootstrap4\ActiveForm;
 use yii\rest\ActiveController;
 
+/**
+ * @OA\Info(
+ *     title="My First API",
+ *     version="0.1"
+ * )
+ */
+class OpenApi
+{
+}
 
 /**
  * Userl Controller API
@@ -26,7 +37,7 @@ class UserlController extends ActiveController
 
         if ($model->load(\Yii::$app->request->post(), 'auth') && $usr = $model->activate()) {
 
-            \Yii::$app->response->data = $usr;
+            \Yii::$app->response->data = ['token' => $usr];
         } else {
 
             throw new \yii\web\UnauthorizedHttpException();
@@ -82,6 +93,4 @@ class UserlController extends ActiveController
             ->limit(30)
             ->all()];
     }
-
-    
 }

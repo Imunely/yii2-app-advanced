@@ -1,0 +1,362 @@
+{
+    "openapi": "3.0.2",
+    "info": {
+        "title": "Yii API",
+        "version": "1.0"
+    },
+    "servers": [
+        {
+            "url": "http://api.local/api/v1",
+            "description": "Dev"
+        }
+    ],
+    "paths": {
+        "/userls/message": {
+            "post": {
+                "summary": "This method meed to send message to some user",
+                "requestBody": {
+                    "content": {
+                        "application/x-www-form-urlencoded; charset=utf-8": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "msg": {
+                                        "description": "Here is values of array",
+                                        "type": "array",
+                                        "items": {
+                                            "type": "string"
+                                        }
+                                    }
+                                }
+                            },
+                            "example": {
+                                "description": [
+                                    "For test use: msg[from]=3&msg[to]=2&msg[token]=MxzIQQc3dochrM7JktDqvV0twD93NJVJ&msg[msg]=Some msg from user 3 to 2"
+                                ],
+                                "msg": {
+                                    "from": 1,
+                                    "to": 3,
+                                    "token": "MxzIQQc3dochrM7JktDqvV0twD93NJVJ"
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "title": "Sample",
+                                    "type": "object",
+                                    "properties": {
+                                        "status": {
+                                            "type": "boolean",
+                                            "title": "true"
+                                        }
+                                    }
+                                },
+                                "example": {
+                                    "status": true
+                                }
+                            }
+                        }
+                    },
+                    "406": {
+                        "description": "Bad responce",
+                        "content": {
+                            "application/json": {
+                                "example": {
+                                    "name": "Not Acceptable",
+                                    "message": "",
+                                    "code": 0,
+                                    "status": 406,
+                                    "type": "yii\\web\\NotAcceptableHttpException"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/userls/getmessageforuser": {
+            "get": {
+                "summary": "This method meed to get message for some user",
+                "parameters": [
+                    {
+                        "in": "query",
+                        "description": "Use identify user who have message",
+                        "required": true,
+                        "name": "user_id",
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": "http://api.local/api/v1/userls/getmessageforuser?user_id=3"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful response",
+                        "content": {
+                            "application/json": {
+                                "example": {
+                                    "messages": [
+                                        {
+                                            "id": 14,
+                                            "user_id_from": 3,
+                                            "user_id_to": 2,
+                                            "message": "Some msg from user 3 to 2",
+                                            "created_at": 1655495201,
+                                            "updated_at": 1655495201
+                                        },
+                                        {
+                                            "id": 13,
+                                            "user_id_from": 3,
+                                            "user_id_to": 2,
+                                            "message": "Some msg from user 3 to 1",
+                                            "created_at": 1655461354,
+                                            "updated_at": 1655461354
+                                        },
+                                        {
+                                            "id": 12,
+                                            "user_id_from": 3,
+                                            "user_id_to": 1,
+                                            "message": "Some msg from user 3 to 1",
+                                            "created_at": 1655461309,
+                                            "updated_at": 1655461309
+                                        }
+                                    ]
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad responce",
+                        "content": {
+                            "application/json": {
+                                "example": {
+                                    "name": "Bad Request",
+                                    "message": "Missing required parameters: user_id",
+                                    "code": 0,
+                                    "status": 400,
+                                    "type": "yii\\web\\BadRequestHttpException"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/userls/registration": {
+            "post": {
+                "summary": "This method meed to registration",
+                "requestBody": {
+                    "content": {
+                        "application/x-www-form-urlencoded; charset=utf-8": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "sign": {
+                                        "description": "Here is values of array",
+                                        "type": "array",
+                                        "items": {
+                                            "type": "string"
+                                        }
+                                    }
+                                }
+                            },
+                            "example": {
+                                "description": [
+                                    "For test use: sign[username]=Bebra&sign[phone]=876723823&sign[password]=dsufy7632*^#"
+                                ],
+                                "sign": {
+                                    "username": "Admin",
+                                    "phone": "89767568",
+                                    "password": "fW#$344Pg"
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "title": "Sample",
+                                    "type": "object",
+                                    "properties": {
+                                        "code": {
+                                            "type": "integer",
+                                            "title": "1234"
+                                        },
+                                        "token": {
+                                            "type": "string",
+                                            "title": "Tw0s30rzpGohKrkud2sn9qZR61R_WpbQ"
+                                        }
+                                    }
+                                },
+                                "example": {
+                                    "code": 9822,
+                                    "token": "Tw0s30rzpGohKrkud2sn9qZR61R_WpbQ"
+                                }
+                            }
+                        }
+                    },
+                    "406": {
+                        "description": "Bad responce",
+                        "content": {
+                            "application/json": {
+                                "example": {
+                                    "name": "Not Acceptable",
+                                    "message": "",
+                                    "code": 0,
+                                    "status": 406,
+                                    "type": "yii\\web\\NotAcceptableHttpException"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/userls/auth": {
+            "post": {
+                "summary": "This method meeds to confirm code after registration",
+                "requestBody": {
+                    "content": {
+                        "application/x-www-form-urlencoded; charset=utf-8": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "auth": {
+                                        "description": "Here is values of array",
+                                        "type": "array",
+                                        "items": {
+                                            "type": "string"
+                                        }
+                                    }
+                                }
+                            },
+                            "example": {
+                                "auth": {
+                                    "code": 1234,
+                                    "token": "Tw0s30rzpGohKrkud2sn9qZR61R_WpbQ"
+                                },
+                                "description": [
+                                    "For test use: `auth[code]=1234&auth[token]=Tw0s30rzpGohKrkud2sn9qZR61R_WpbQ`"
+                                ]
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "title": "Sample",
+                                    "type": "object",
+                                    "properties": {
+                                        "token": {
+                                            "type": "string",
+                                            "title": "MxzIQQc3dochrM7JktDqvV0twD93NJVJ"
+                                        }
+                                    }
+                                },
+                                "example": {
+                                    "token": "MxzIQQc3dochrM7JktDqvV0twD93NJVJ"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Bad responce",
+                        "content": {
+                            "application/json": {
+                                "example": {
+                                    "name": "Unauthorized",
+                                    "message": "",
+                                    "code": 0,
+                                    "status": 401,
+                                    "type": "yii\\web\\UnauthorizedHttpException"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/userls/login": {
+            "post": {
+                "summary": "This method meeds to authorization",
+                "requestBody": {
+                    "content": {
+                        "application/x-www-form-urlencoded; charset=utf-8": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "login": {
+                                        "description": "Here is values of array",
+                                        "type": "array",
+                                        "items": {
+                                            "type": "string"
+                                        }
+                                    }
+                                }
+                            },
+                            "example": {
+                                "description": [
+                                    "For test use: login[username]=Bebra&login[password]=jjbsjabaxhH$#!"
+                                ],
+                                "login": {
+                                    "username": "Admin",
+                                    "password": "fW#$344Pg"
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "title": "Sample",
+                                    "type": "object",
+                                    "properties": {
+                                        "token": {
+                                            "type": "string",
+                                            "title": "MxzIQQc3dochrM7JktDqvV0twD93NJVJ"
+                                        }
+                                    }
+                                },
+                                "example": {
+                                    "token": "MxzIQQc3dochrM7JktDqvV0twD93NJVJ"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Bad responce",
+                        "content": {
+                            "application/json": {
+                                "example": {
+                                    "name": "Unauthorized",
+                                    "message": "",
+                                    "code": 0,
+                                    "status": 401,
+                                    "type": "yii\\web\\UnauthorizedHttpException"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

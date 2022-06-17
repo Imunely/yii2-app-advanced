@@ -65,7 +65,8 @@ return [
                         'POST login' => 'login',
                         'POST registration' => 'registration',
                         'POST message' => 'message',
-                        'GET getmessageforuser' => 'getmessageforuser'
+                        'GET getmessageforuser' => 'getmessageforuser',
+                        'GET go' => 'go'
                     ],
                 ]
             ],
