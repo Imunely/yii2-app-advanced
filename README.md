@@ -20,6 +20,8 @@ Document_root смотрит на `your_folder/yii2-app-advanced/api/web`
 
 - Чтобы получить доступ к api используйте url `http://api.local/api/v1/userls`
 - Чтобы получить доступ к документации api, используйте url `http://api.local/doc`
+- <img width="645" alt="image" src="https://user-images.githubusercontent.com/93548805/174398981-61e5e11d-488a-4076-be83-29a586dbc652.png">
+- <img width="646" alt="image" src="https://user-images.githubusercontent.com/93548805/174399175-01758db1-8d19-4430-9581-9c103e4acf6a.png">
 
 
 3. Выполнение миграции: `php yii migrate yiiUsr`
