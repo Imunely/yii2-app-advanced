@@ -8,23 +8,31 @@
 
 Used: `php 7.4, Apache2, mysql5`
 
-Как развернуть:
+1. Как развернуть:
 
 Используйте `git clone https://github.com/Imunely/yii2-app-advanced.git` чтобы клонировать проект
 
-Настройка веб-сервера:
+2. Настройка веб-сервера:
 
 Document_root смотрит на `your_folder/yii2-app-advanced/api/web`
 
 В папке `\api\modules` находятся версии api в нумерации `v1, v2, ..., vn`
 
-Чтобы получить доступ к api сипользуйте url `http://yii.local/api/v1/userls`
+- Чтобы получить доступ к api используйте url `http://api.local/api/v1/userls`
+- Чтобы получить доступ к документации api, используйте url `http://api.local/doc`
 
-Выполнение миграции: `php yii migrate yiiUsr`
+
+3. Выполнение миграции: `php yii migrate yiiUsr`
 
 <br>
 
-Доступны следующие запросы:
+
+
+
+
+
+
+<!-- Доступны следующие запросы:
 
 `'POST regist' => 'regist'` - запрос для регитрации
 
@@ -137,4 +145,4 @@ Content-Type: application/json; charset=UTF-8
 
 </em></small>
 
-</div>
+</div> -->
