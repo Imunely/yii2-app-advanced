@@ -54,7 +54,6 @@ class UserlController extends ActiveController
         if ($model->load(\Yii::$app->request->post(), 'sign')  && $model->signup()) {
             \Yii::$app->response->data = $model->sendCode();
         } else {
-            //\Yii::$app->response->data = ActiveForm::validate($model); ???
             throw new \yii\web\NotAcceptableHttpException();
         }
     }
@@ -67,7 +66,6 @@ class UserlController extends ActiveController
 
             \Yii::$app->response->data = ['status' => true];
         } else {
-            //\Yii::$app->response->data = ActiveForm::validate($model); ???
             throw new \yii\web\NotAcceptableHttpException();
         }
     }
@@ -84,4 +82,6 @@ class UserlController extends ActiveController
             ->limit(30)
             ->all()];
     }
+
+    
 }

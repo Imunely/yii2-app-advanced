@@ -14,14 +14,16 @@ class Message extends Model
 {
     public $from;
     public $to;
-
     public $msg;
+    public $token;
 
     private $msgtable;
+    //private $user;
 
     public function __construct()
     {
         $this->msgtable = new Msg();
+        //$this->user = new Userl();
     }
 
     /**
@@ -34,7 +36,7 @@ class Message extends Model
             ['msg', 'required'],
             ['msg', 'string'],
 
-            [['from', 'to'], 'required'],
+            [['from', 'to', 'token'], 'required'],
         ];
     }
 
@@ -45,7 +47,9 @@ class Message extends Model
      */
     public function sendMsg()
     {
-        if (!$this->validate()) {
+
+
+        if (!$this->validate() || !$this->validateToken()) {
             return null;
         }
 
@@ -56,4 +60,20 @@ class Message extends Model
         return $this->msgtable->save();
     }
 
+    /**
+     * Check validate token
+     *
+     * @return bool
+     */
+    public function validateToken()
+    {
+        $usr = Userl::findByAuthToken($this->token);
+
+        if ($usr !== null && intval($usr->id) === intval($this->from)) {
+
+            return true;
+        }
+
+        return false;
+    }
 }
